@@ -1,10 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html'%}
+{%block title%}Welcome to Kabul Blog {%endblock title%}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col s12">
+            
+            {% for p in posts %}
+            {{p.content |truncatewords:55| safe}}
+            <div class="row">
+                <div class="col s12 m8">
+
+                    
+                    <div class="mt20">
+                        <a href="" class="btn">Read More</a>
+                    </div>
+                </div>
+                <div class="col s12 m4">
+                    <img src="/media/{{p.image}}" alt="" class="responsive-img">
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+       
+    </div>
+</div>
+{% endblock content %}
+

@@ -14,5 +14,7 @@ class PostAdmin(admin.ModelAdmin):
     list_filter = ('categ',)
     list_per_page = 50
 
+
+
 admin.site.register(Category,CategoryAdmin)
 admin.site.register(Post,PostAdmin)
