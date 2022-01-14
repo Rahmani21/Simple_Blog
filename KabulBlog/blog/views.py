@@ -1,21 +1,39 @@
 
 from django.shortcuts import render
 from django.http import HttpResponse
-from blog.models import Post
+from blog.models import Post,Category
 # Create your views here.
 
 def home(request):
     # Load all the post from db
-    posts  = Post.objects.all()[:11]
+    posts  = Post.objects.all()
+    category = Category.objects.all()
+
+
     data = {
-        'posts':posts
+        'posts':posts,
+        'cats': category
     }
     return render(request,'home.html', data)
 
 
 def post(request,post_url):
-    post=Post.objects.get(url=post_url) 
-    print(post)
-    return render(request,'posts.html',{})
+    post=Post.objects.get(url=post_url)
+    category = Category.objects.all()
+    context = {
+        'post':post,
+        'cats': category
+    }
+    return render(request,'posts.html',context)
 
-# 2:31
+
+
+def category(request,url):
+    categ = Category.objects.get(url=url)
+    posts = Post.objects.filter(categ = categ)
+    context = {
+        'category': categ,
+        'posts': posts
+    }
+    return render(request,'category.html',context)
+# 3:4

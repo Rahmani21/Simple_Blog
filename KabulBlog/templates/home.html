@@ -2,8 +2,33 @@
 {%block title%}Welcome to Kabul Blog {%endblock title%}
 
 {% block content %}
+
 <div class="container">
-    <div class="row">
+    <!-- Set up your HTML -->
+<div class="owl-carousel">
+   
+    {%for cat in cats%}
+
+        <div class="card item">
+            <div class="img-container">
+                <img src="/media/{{cat.image}}" class="responsive-img" alt="" style="im">
+            </div>
+            <div class="card-content">
+                <div class="card-title">
+                    {{cat.title}}
+                </div>
+                <p class="truncate">{{cat.description|safe}}</p>
+                <div class="container center-align mt20">
+                    <a href="/category/{{cat.url}}" class="btn">View</a>
+                </div>
+            </div>
+        </div>
+    {%endfor%}
+  </div>
+</div>
+<br><br><br><br>
+<div class="container">
+    <div class="row">    
         <div class="col s12">
             
             {% for p in posts %}
@@ -13,7 +38,7 @@
 
                     
                     <div class="mt20">
-                        <a href="" class="btn">Read More</a>
+                        <a href="/blog/{{p.url}}" class="btn">Read More</a>
                     </div>
                 </div>
                 <div class="col s12 m4">
@@ -22,7 +47,7 @@
             </div>
             {% endfor %}
         </div>
-       
+        
     </div>
 </div>
 {% endblock content %}

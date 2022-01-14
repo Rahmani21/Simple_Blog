@@ -14,3 +14,18 @@ nav.bg-primary{
 
 
 /* 2:24:56 */
+
+/* Post Page */
+.container-custom{
+    width: 90% !important;
+    margin: auto !important;
+    /* margin-left: 10%; */
+}
+
+.item{
+    margin-left: 5%;
+    height: 400px;
+}
+.cat-img{
+    max-height: 250px;
+}
