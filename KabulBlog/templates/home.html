@@ -1,4 +1,4 @@
-{% extends 'base.html'%}
+{% extends 'base.html' %}
 {%block title%}Welcome to Kabul Blog {%endblock title%}
 
 {% block content %}
@@ -16,6 +16,7 @@
             <div class="card-content">
                 <div class="card-title">
                     {{cat.title}}
+                    <br>
                     {{cat.added_date}}
                 </div>
                 <p class="truncate">{{cat.description|safe}}</p>

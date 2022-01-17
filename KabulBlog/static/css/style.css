@@ -3,6 +3,7 @@ nav.bg-primary{
 }
 .btn:hover{
     background-color: #343a40;
+    color: white;
 }
 .btn{
     background-color: #343a40;
@@ -28,4 +29,7 @@ nav.bg-primary{
 }
 .cat-img{
     max-height: 250px;
+}
+.brand-logo{
+    color: white;
 }
