@@ -3,21 +3,31 @@
 <ul id="dropdown1" class="dropdown-content">
   {%for cat in cats%}
   <li><a href="/category/{{cat.url}}">{{cat.title}}</a></li>
+
   {%endfor%}
-    <!-- 
-    <li><a href="#!">two</a></li>    
-    <li class="divider"></li>
-    <li><a href="#!">three</a></li> -->
+  
   </ul>
   <nav class="bg-primary">
     <div class="container">
         <div class="nav-wrapper">
-            <a href="/home" class="brand-logo">Kabul Blog</a>
+            <a href="{% url 'blog:home'%}" class="brand-logo">Kabul Blog</a>
             <ul class="right hide-on-med-and-down">
+              <li><a href="{% url 'blog:home'%}">Home</a></li>
               <li><a href="">About</a></li>
-              <li><a href="/admin">Admin</a></li>
+              {% if user.is_authenticated%}
+              
+              <li>
+                <a href="{% url 'blog:home'%}">{{request.user}}</a>
+              </li>
+              <li><a href="{% url 'blog:logout'%}">Logout</a></li>
+              
               <!-- Dropdown Trigger -->
               <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Category<i class="material-icons right">arrow_drop_down</i></a></li>
+              {% else %}
+              <li><a href="{% url 'blog:register'%}">Register</a></li>
+              <li><a href="{% url 'blog:login'%}">Login</a></li>
+              <li><a href="/admin">Admin Login</a></li>
+              {% endif %}
             </ul>
           </div>
     </div>
