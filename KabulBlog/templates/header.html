@@ -13,16 +13,17 @@
             <a href="{% url 'blog:home'%}" class="brand-logo">Kabul Blog</a>
             <ul class="right hide-on-med-and-down">
               <li><a href="{% url 'blog:home'%}">Home</a></li>
-              <li><a href="">About</a></li>
+              {% comment %} <li><a href="">About</a></li> {% endcomment %}
+              <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Category<i class="material-icons right">+</i></a></li>
               {% if user.is_authenticated%}
               
               <li>
                 <a href="{% url 'blog:home'%}">{{request.user}}</a>
               </li>
+              <li><a href="{% url 'blog:addpost'%}">Add Post</a></li>
               <li><a href="{% url 'blog:logout'%}">Logout</a></li>
               
               <!-- Dropdown Trigger -->
-              <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Category<i class="material-icons right">arrow_drop_down</i></a></li>
               {% else %}
               <li><a href="{% url 'blog:register'%}">Register</a></li>
               <li><a href="{% url 'blog:login'%}">Login</a></li>

@@ -87,3 +87,5 @@ def user_logout(request):
     logout(request)
     return redirect("blog:home")
 
+def add_post_blog(request):
+    return render(request,'post_blog.html')

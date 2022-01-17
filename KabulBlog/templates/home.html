@@ -16,6 +16,7 @@
             <div class="card-content">
                 <div class="card-title">
                     {{cat.title}}
+                    {{cat.added_date}}
                 </div>
                 <p class="truncate">{{cat.description|safe}}</p>
                 <div class="container center-align mt20">
@@ -32,6 +33,7 @@
         <div class="col s12">
             
             {% for p in posts %}
+            <h2>{{p.title}}</h2>
             {{p.content |truncatewords:55| safe}}
             <div class="row">
                 <div class="col s12 m8">
