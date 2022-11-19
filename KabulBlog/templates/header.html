@@ -11,8 +11,7 @@
         <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown">Category</a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           {%for cat in cats%}
-       
-          <a class="dropdown-item" href="/category/{{cat.url}}">{{cat.title}}</a>
+          <a class="dropdown-item" href="{% url 'blog:category' cat.cat_id %}">{{cat.title}}</a>
           {%endfor%}
         </div>
       </li>
@@ -20,6 +19,7 @@
       <li>
         <li class="nav-item"><a href="{% url 'blog:home'%}" class="nav-link">{{request.user}}</a></li>
         <li class="nav-item"><a href="{% url 'blog:addpost'%}" class="nav-link">Add Post</a></li>
+        <li class="nav-item"><a href="{% url 'blog:addcat'%}" class="nav-link">Add Category</a></li>
       </li>
       <li class="nav-item"><a href="{% url 'blog:logout'%}" class="nav-link">Logout</a></li>
       {% else %}

@@ -17,7 +17,7 @@
 
     <form action="{% url 'blog:register'%}" method="POST">
         {%csrf_token%}
-        <div class="form-row" style="display: flex; justify-content: space-between;">
+        <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputfirstname">First Name</label>
                 <input type="text" class="form-control" id="firstname" name="firstname">
@@ -26,7 +26,7 @@
                 <label for="inputlastname">Last Name</label>
                 <input type="text" class="form-control" id="lastname" name="lastname">
             </div>
-        </div>
+        {% comment %} </div> {% endcomment %}
         <div class="form-group col-md-12">
             <label for="inputusername">Username</label>
             <input type="text" class="form-control" id="username" placeholder="Username" name="username">
@@ -35,7 +35,7 @@
             <label for="inputemail">Email</label>
             <input type="email" class="form-control" placeholder="Email" id="email" name="email">
         </div>
-        <div class="form-row" style="display: flex; justify-content: space-between;">
+        {% comment %} <div class="form-row"> {% endcomment %}
             <div class="form-group col-md-6">
                 <label for="inputpassword1">Password 1</label>
                 <input type="password" class="form-control" id="password1" name="password1">
@@ -43,8 +43,9 @@
             <div class="form-group col-md-6">
                 <label for="inputpassword2">Password 2</label>
                 <input type="password" class="form-control" id="password2" name="password2">
-            </div>
+            {% comment %} </div> {% endcomment %}
 
+        </div>
         </div>
         <button type="submit" class="btn btn-primary my-3">Sign in</button>
     </form>

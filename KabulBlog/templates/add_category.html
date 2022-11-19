@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{%block title%}Add Post {%endblock title%}
+{% block content %}
+<div class="container">
+    <h1 class="text-center">Add New Category</h1>
+<div class="row z-depth-5">
+    <form class="col s12" enctype="multipart/form-data" method = "POST">
+      <div class="row">
+        <div class="input-field col s12">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Add Post</button>
+
+        </div>
+      </div>
+    </form>
+  </div>
+  </div>
+
+
+{% endblock %}

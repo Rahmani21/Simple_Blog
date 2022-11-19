@@ -6,7 +6,7 @@ from .models import Category,Post
 # for congfiguration of CategoryAdmin
 
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('image_tag','title',"description",'url',"added_date")
+    list_display = ('title',"description",'url',"added_date")
     search_fields = ("title",)
 class PostAdmin(admin.ModelAdmin):
     list_display = ('title', "content", 'url')

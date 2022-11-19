@@ -18,12 +18,12 @@
     <form action="{% url 'blog:login'%}" method="POST">
         {%csrf_token%}
         
+        <div class="form-row">
         <div class="form-group col-md-12">
             <label for="inputusername">Username</label>
             <input type="text" class="form-control" id="username" placeholder="Username" name="username">
         </div>
         
-        <div class="form-row">
             <div class="form-group col-md-12">
                 <label for="password">Password</label>
                 <input type="password" class="form-control" id="password" name="password">

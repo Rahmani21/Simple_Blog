@@ -3,7 +3,6 @@ nav.bg-primary{
 }
 .btn:hover{
     background-color: #343a40;
-    color: white;
 }
 .btn{
     background-color: #343a40;
@@ -25,7 +24,7 @@ nav.bg-primary{
 
 .item{
     margin-left: 5%;
-    height: 400px;
+    height: 10px;
 }
 .cat-img{
     max-height: 250px;

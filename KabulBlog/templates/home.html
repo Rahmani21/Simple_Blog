@@ -11,7 +11,7 @@
 
         <div class="card item">
             <div class="img-container">
-                <img src="/media/{{cat.image}}" class="responsive-img" alt="" style="im">
+                <img src="/media/{{cat.image}}"  height="150px" alt="">
             </div>
             <div class="card-content">
                 <div class="card-title">
@@ -20,20 +20,23 @@
                     {{cat.added_date}}
                 </div>
                 <p class="truncate">{{cat.description|safe}}</p>
-                <div class="container center-align mt20">
-                    <a href="/category/{{cat.url}}" class="btn">View</a>
+                <div class="container center-align" style="position: absolute; top: 80%;">
+                    <a href="{% url 'blog:category' cat.cat_id %}" class="btn">View</a>
+                    <a href="{% url 'blog:update_category' cat.cat_id %}" class="btn">Update</a>
+                    <a href="{% url 'blog:delete_category' cat.cat_id %}"  class="btn" onclick="return confirm('Are you sure about this ?')" >Delete</a>
                 </div>
             </div>
         </div>
     {%endfor%}
   </div>
-</div>
+</div> 
 
 <div class="container my-10">
     <div class="row">    
         <div class="col s12">
             
             {% for p in posts %}
+            
             <h2>{{p.title}}</h2>
             {{p.content |truncatewords:55| safe}}
             <div class="row">
@@ -41,12 +44,14 @@
 
                     
                     <div class="mt20">
-                        <a href="/blog/{{p.url}}" class="btn">Read More</a>
+                        <a href="{% url 'blog:blog' p.post_id %}" class="btn btn-primary">Read More</a>
                     </div>
                 </div>
+                {% if p.image %}
                 <div class="col s12 m4">
-                    <img src="/media/{{p.image}}" alt="" class="responsive-img">
+                    <img src="/post/{{p.image}}" alt="" class="responsive-img">
                 </div>
+                {% endif %}
             </div>
             {% endfor %}
         </div>

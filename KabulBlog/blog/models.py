@@ -16,8 +16,8 @@ class Category(models.Model):
 
 
     # for showing the image in the admin view
-    def image_tag(self):
-        return format_html('<img src = "/media{}"/ style = "width:40px;height:40px;border_radius:50%">'.format(self.image))
+    # def image_tag(self):
+    #     return format_html('<img src = "/media{}"/ style = "width:40px;height:40px;border_radius:50%">'.format(self.image))
     def __str__(self):
         return self.title
 

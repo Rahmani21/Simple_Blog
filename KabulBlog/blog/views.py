@@ -5,6 +5,7 @@ from blog.models import Post,Category
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
+from .forms import PostForm,CategoryForm
 # Create your views here.
 
 def home(request):
@@ -19,9 +20,37 @@ def home(request):
     }
     return render(request,'home.html', data)
 
+def addpost(request):
+    category = Category.objects.all()
+    form = PostForm(request.POST, request.FILES)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Post has beed added successully')
+            return redirect('blog:home')
 
-def post(request,post_url):
-    post=Post.objects.get(url=post_url)
+        else:
+            form = PostForm()
+    
+    # if request.method == 'POST':
+    #     title = request.POST.get('title')
+    #     content = request.POST.get('content')
+    #     url = request.POST.get('url')
+    #     categ = request.POST.get('categ')
+    #     image = request.FILES.get('image')
+    #     post = Post(title = title, 
+    #         content = content,
+    #         url = url,
+    #         categ = categ,
+    #         image = image
+    #     )
+    #     post.save()
+    #     messages.success(request,'Post has beed added successully')
+    #     return redirect('blog:home')
+    return render(request, 'add_post.html', {'form':form,'category':category})
+
+def post(request,post_id):
+    post=Post.objects.get(post_id=post_id)
     category = Category.objects.all()
     context = {
         'post':post,
@@ -31,8 +60,8 @@ def post(request,post_url):
 
 
 
-def category(request,url):
-    categ = Category.objects.get(url=url)
+def category(request,cat_id):
+    categ = Category.objects.get(cat_id=cat_id)
     posts = Post.objects.filter(categ = categ)
     context = {
         'category': categ,
@@ -40,6 +69,36 @@ def category(request,url):
     }
     return render(request,'category.html',context)
 
+def add_category(request):
+    form = CategoryForm(request.POST,request.FILES)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Post Added Successfully!')
+            return redirect('blog:home')
+        else:
+            form = CategoryForm()
+    return render(request,'add_category.html',{'form':form})
+
+def update_category(request,cat_id):
+    category = Category.objects.get(cat_id = cat_id)
+    form = CategoryForm(request.POST or None,request.FILES, instance=category)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Category update successfully')
+            return redirect('blog:home')
+        else:
+            form = CategoryForm()
+    return render(request,'update_category.html',{'form':form})
+    
+
+def deleteCategory(request,cat_id):
+    category = Category.objects.get(cat_id = cat_id)
+    category.delete()
+    messages.success(request,"Category has been deleted")
+    return redirect('blog:home')
+    
 def user_register(request):
     if request.method == 'POST':
         firstname = request.POST.get('firstname')
@@ -87,5 +146,3 @@ def user_logout(request):
     logout(request)
     return redirect("blog:home")
 
-def add_post_blog(request):
-    return render(request,'post_blog.html')
